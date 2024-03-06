@@ -1,0 +1,3 @@
+Exercise 1-11: How would you test the word count program? What kinds of input are most likley to uncover bugs if there are any?
+
+I would first test the base case with normal text input wi with all types of space (linebreaks, tabs, and regular spaces). I would then test it with sequences which include strings of repeating spaces of the same type, and mixtures of different types of spaces.
