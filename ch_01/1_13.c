@@ -14,7 +14,7 @@ Currently, the only tools the book has introduced for reading input require me t
 
 If I could iterate through the input multiple times, I would iterate twice: once to count the length of the longest word, and once to sum up the occurences of various lengths of word.
 
-Instead, I will simply assume a max size of 50, which has it's downsides.
+Instead, I will simply assume a max size of 26, which has it's downsides.
 */
 int main()
 {
