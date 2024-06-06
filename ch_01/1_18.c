@@ -50,21 +50,25 @@ int getLine(char line[])
 
 void formatLine(char line[], int i)
 {
-	i = i - 2; //Assumes that the last character is \0, and the second to last is \n
-	while (i >= 0 && (line[i] == ' ' || line[i] == '\t'))
+	//If a line is just \n, then we don't need do run the main loop.	
+	if (line[0] == '\n')
+	{
+		line[0] = '\0';
+		i = -1;
+	}
+	
+	i = i -2; //Assumes that line[i] == \0, line[i-1] == \n
+	while (i >= 0 && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
 	{
 		line[i] = '\0';
 		--i;
 	}
-	
-	if (i >= 0)
-	{
-		line[i+1] = '\n';
-	}
 
-	if (line[0] == '\n')
+	if (line[0] != '\0')
 	{
-		line[0] = '\0';
+		++i;
+		line[i] = '\n';
+		++i;
+		line[i] = '\0';
 	}
-
 }
