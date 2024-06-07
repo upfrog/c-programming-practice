@@ -4,7 +4,7 @@ Exercise 1-19: Write a function reverse(s) that reverses the character string s.
 
 
 int get_line(char line[]);
-void reverse(char line[], int len);
+void reverse(char line[]);
 
 #define MAXLEN 1000
 
@@ -17,7 +17,7 @@ int main()
 
 	while ((len = get_line(line)) != 0)
 	{
-		reverse(line, len);
+		reverse(line);
 		printf("%s", line);
 	}
 }
@@ -40,9 +40,16 @@ int get_line(char line[])
 	return i;
 }
 
-void reverse(char line[], int len)
+void reverse(char line[])
 {
-	len = len - 2;
+	int len = 0;
+
+	while (line[len] != '\n')
+	{
+		++len;
+	}
+
+	--len;	
 	int target = (len/2);
 	char swap;
 
