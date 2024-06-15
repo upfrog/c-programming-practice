@@ -17,7 +17,7 @@ int main()
 
 	while ((len = get_line(line)) != 0)
 	{
-		reverse(line);
+		//reverse(line);
 		printf("%s", line);
 	}
 }
