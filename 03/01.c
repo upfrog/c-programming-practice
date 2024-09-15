@@ -1,5 +1,10 @@
 /*
-Exercise 3-1. Ourbinary serach makes two test inside the loop, when one would suffice (at the price of more tests outside). Write a version with only one test inside the loop and measure the difference in run-time.
+Exercise 3-1. Our binary search makes two test inside the loop, when one would suffice (at the price of more tests outside). Write a version with only one test inside the loop and measure the difference in run-time.
+
+The original technique took about 2.53s of real time.
+The new technique takes about 2.47s of real time.
+
+There is a difference, but not a large one. That said, I do wonder if there is a more efficient way to make this point. My while loop now has an additional conidtion, for example; is there a way to accomplish this without that?
 */
 
 
@@ -37,25 +42,29 @@ int binsearch(int target, int arr[], int len)
 {
 	int low = 0;
 	int high = len;
+	int mid = (low + high) / 2;
 
-	while (low <= high)
+	while (arr[mid] != target && low <= high)
 	{
-		int mid = (low + high) / 2;
+		mid = (low + high) / 2;
 		if (arr[mid] < target)
 		{
 			low = mid + 1;
 		}
-		else if (arr[mid] > target)
+		else
 		{
 			high = mid - 1;
 		}
-		else
-		{
-			return mid;
-		}
 	}
-	return -1; //target not found in arr.
 
+	if (arr[mid] == target)
+	{
+		return mid;
+	}
+	else
+	{
+		return -1; //target not found in arr.
+	}
 }
 
 //original binsearch
