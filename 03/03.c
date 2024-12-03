@@ -1,6 +1,4 @@
 /*
-NOT COMPLETED
-
 Excercise 3-3. Write a function expand(s1,s2) that expands shorthand notations like a-z in 
 the string s1 into the equivalent complete list abc...xyz in s2. Allow for letters of either 
 case and digits, and be prepared to handle cases like a-b-c and a-z0-9 and -a-z. Arrange that 
@@ -19,22 +17,6 @@ int advance(char[], int, char);
 int is_sequence(char[], int, char);
 int write_sequence(char[], int, char, char);
 
-
-/*
-After we have found the start of a sequence, we need to advance to the end of that sequence in s1.
-
-To do that, we just advance until we hit the end of the sequence, but no further.
-
-After that, we copy characters directly until we hit the start of the next sequence.
-
-
-
-switch case on set of symbolic constants, each of which refers to the start of a sequence
-*/
-
-
-
-
 int main()
 {
 	char s1[MAXINPUTLEN];
@@ -42,10 +24,17 @@ int main()
 	fgets(s1, MAXINPUTLEN, stdin);
 	expand(s1, s2);
 	printf("%s\n", s2);
+	return 0;
 }
 
 /*
 Copies s1 into s2, expanding certain abbreviations.
+
+How can I make this less painful?
+
+I could...
+- Write functions for alphatic and numeric expansions - that doesn't save me much.
+- Would generalizing this code help? 
 */
 void expand(char s1[], char s2[])
 {
@@ -82,10 +71,9 @@ void expand(char s1[], char s2[])
 	}
 }
 
-
 /*
 To be a valid sequence, a substring must start with the first character of the
-sequence, then be followed by a slash, then the final character of the sequence.
+sequence, then be followed by a dash, then the final character of the sequence.
 */
 int is_sequence(char s2[], int i, char seq_end)
 {
@@ -99,17 +87,6 @@ int is_sequence(char s2[], int i, char seq_end)
 	{
 		return FALSE;
 	}
-}
-
-
-int advance(char s2[], int start, char target)
-{
-	while (s2[start] != target)
-	{
-		++start;
-	}
-
-	return start;
 }
 
 /*
