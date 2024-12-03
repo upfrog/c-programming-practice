@@ -42,11 +42,11 @@ int main()
 	fgets(s1, MAXINPUTLEN, stdin);
 	expand(s1, s2);
 	printf("%s\n", s2);
-
 }
 
-
-
+/*
+Copies s1 into s2, expanding certain abbreviations.
+*/
 void expand(char s1[], char s2[])
 {
 	int i = 0;
@@ -55,48 +55,27 @@ void expand(char s1[], char s2[])
 
 	while (s1[i] != '\0')
 	{
-		if (s1[i] == 'a')
+		if (s1[i] == 'a' && is_sequence(s1, i, 'z'))
 		{
-			seq_end = 'z';
-			if (is_sequence(s1, i, seq_end))
-			{
-				write_sequence(s2, j, 'a', 'z');
-				++i;
-				j += 26;
-				i += 3;
-			}
-
-			
+			write_sequence(s2, j, 'a', 'z');
+			j += 26;
+			i += 3;
 		}
-		else if (s1[i] == 'A')
+		else if (s1[i] == 'A' && is_sequence(s1, i, 'Z'))
 		{
-			seq_end = 'Z';
-			if (is_sequence(s1, i, seq_end))
-			{
-				
-				write_sequence(s2, j, 'A', 'Z');
-				++i;
-				j += 26;
-				i += 3;
-			}
+			write_sequence(s2, j, 'A', 'Z');
+			j += 26;
+			i += 3;
 		}
-
-		else if (s1[i] == 0 || s1[i] == '0')
+		else if ((s1[i] == 0 || s1[i] == '0') && is_sequence(s1, i, '9'))
 		{
-			seq_end = '9';
-			if (is_sequence(s1, i, seq_end))
-			{
-
-				write_sequence(s2, j, '0', '9');
-				++i;
-				j += 10;
-				i += 3;
-			}
+			write_sequence(s2, j, '0', '9');
+			j += 10;
+			i += 3;
 		}
 		else
 		{
 			s2[j] = s1[i];
-			//copy s1[] to s2
 			++i;
 			++j;
 		}
